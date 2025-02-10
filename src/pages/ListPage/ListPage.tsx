@@ -1,8 +1,10 @@
 import React from 'react';
+import List from "../../components/List/List";
 
 function ListPage() {
     return (
-        <h1>List page</h1>
+
+        <List />
     )
 }
 
