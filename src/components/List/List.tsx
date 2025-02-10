@@ -17,8 +17,10 @@ function List() {
     return (
         <>
             <ul className="list">
-
-
+                <ListItem/>
+                <ListItem/>
+                <ListItem/>
+                <ListItem/>
             </ul>
 
             <Pagination paginate={paginate} setCurrentPage={setCurrentPage} currentPage={currentPage} totalListItems={5} listItemsPerPage={itemsPerPage}/>
