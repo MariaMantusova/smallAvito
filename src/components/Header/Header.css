@@ -3,7 +3,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    width: 100vw;
+    width: 80vw;
+    margin: 0 auto;
 }
 
 .header__name {
