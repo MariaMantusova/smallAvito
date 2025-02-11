@@ -1,9 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 import "./Form.css";
 import {Select} from "antd";
 import {searchOptions} from "../../data/searchOptions";
+import CategoryForm from "../CategoryForm/CategoryForm";
 
 function Form() {
+    const [isCategoryChosen, setIsCategoryChosen] = useState(false);
+
     return(
         <section className="form-section">
             <h1 className="form-section__title">Форма размещения</h1>
@@ -17,6 +20,8 @@ function Form() {
                 <input className="form__input" placeholder="Фото авто/услуги/недвижимости"
                        type="url" required />
                 <Select placeholder="Выберете категорию" style={{width: "100%"}} options={searchOptions} />
+
+                {isCategoryChosen && <CategoryForm />}
 
                 <button className="form__button">Отправить</button>
             </form>
