@@ -6,6 +6,7 @@
     border: 1px solid var(--main-green-color);
     border-radius: 20px;
     justify-content: space-between;
+    margin-bottom: 30px;
 }
 
 .list-item__image {

@@ -1,5 +1,5 @@
 import React from "react";
-import {ISearchOption, IValidations} from "./mainInterfaces";
+import {IItemAuto, IItemRealEstate, IItemServices, ISearchOption, IValidations} from "./mainInterfaces";
 
 export interface IPropsPagination {
     listItemsPerPage: number
@@ -21,4 +21,17 @@ export interface IPropsCategoryForm {
     validations: any[];
     setSubcategory: React.Dispatch<React.SetStateAction<string>>;
     requirements: boolean[];
+}
+
+
+export interface IPropsListPage {
+    items: (IItemRealEstate | IItemAuto | IItemServices)[]
+}
+
+export interface IPropsList {
+    items: (IItemRealEstate | IItemAuto | IItemServices)[]
+}
+
+export interface IPropsListItem {
+    item: IItemRealEstate | IItemAuto | IItemServices;
 }
