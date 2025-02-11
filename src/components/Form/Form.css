@@ -50,4 +50,21 @@
     border-radius: 30px;
     border: none;
     margin-top: 30px;
+    transition: 0.3s ease-in-out opacity;
+}
+
+.form__button:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.form__button_disabled {
+    background-color: darkgray;
+    cursor: not-allowed;
+    opacity: 1;
+}
+
+.form__button_disabled:hover {
+    cursor: not-allowed;
+    opacity: 1;
 }

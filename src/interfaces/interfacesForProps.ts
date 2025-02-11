@@ -19,5 +19,6 @@ export interface IPropsCategoryForm {
     types: string[];
     options: ISearchOption[];
     validations: any[];
+    setSubcategory: React.Dispatch<React.SetStateAction<string>>;
     requirements: boolean[];
 }

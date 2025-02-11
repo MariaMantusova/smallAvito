@@ -2,25 +2,20 @@ import React, {useState} from "react";
 import "./Form.css";
 import {Select} from "antd";
 import {
-    searchOptions,
-    searchOptionsAuto,
-    searchOptionsRealEstate,
-    searchOptionsServices
+    searchOptions, searchOptionsAuto,
+    searchOptionsRealEstate, searchOptionsServices
 } from "../../data/searchOptions";
 import {useInput} from "../../hooks/ValidationHook/ValidationHook";
 import CategoryForm from "../CategoryForm/CategoryForm";
-import validation from "ajv/dist/vocabularies/validation";
 import {
     autoNames, autoRequirements,
-    autoTypes,
-    realEstateNames, realEstateRequirements,
-    realEstateTypes,
-    servicesNames, servicesRequirements,
-    servicesTypes
+    autoTypes, realEstateNames, realEstateRequirements,
+    realEstateTypes, servicesNames, servicesRequirements, servicesTypes
 } from "../../data/categoriesData";
 
 function Form() {
     const [category, setCategory] = useState("");
+    const [subcategory, setSubcategory] = useState("");
 
     const description = useInput("", {isEmpty: true, isString: true, minLength: 30, maxLength: 500});
     const title = useInput("", {isEmpty: true, isString: true, minLength: 3, maxLength: 50});
@@ -29,6 +24,10 @@ function Form() {
     const categoryInput1 = useInput("", {isEmpty: true, minLength: 1, maxLength: 30});
     const categoryInput2 = useInput("", {isEmpty: true, minLength: 1, maxLength: 30});
     const categoryInput3 = useInput("", {isEmpty: true, minLength: 1, maxLength: 30});
+
+    const isDisabled: boolean = !category || !subcategory || !description.inputValid
+        || !title.inputValid || !location.inputValid || !photo.inputValid
+        || !categoryInput1.inputValid || !categoryInput2.inputValid || category && category === "Недвижимость" ? !categoryInput3.inputValid : false
 
     function onChangeSelect(value: string) {
         setCategory(value);
@@ -80,10 +79,11 @@ function Form() {
                     realEstateNames : category === "Авто" ? autoNames : servicesNames} types={category === "Недвижимость" ?
                     realEstateTypes : category === "Авто" ? autoTypes : servicesTypes} requirements={category === "Недвижимость" ?
                     realEstateRequirements : category === "Авто" ? autoRequirements : servicesRequirements}
+                                           setSubcategory={setSubcategory}
                                            validations={[categoryInput1, categoryInput2, categoryInput3]}
                 />}
 
-                <button className="form__button">Отправить</button>
+                <button className={`form__button ${isDisabled && "form__button_disabled"}`} disabled={isDisabled}>Отправить</button>
             </form>
         </section>
     )
