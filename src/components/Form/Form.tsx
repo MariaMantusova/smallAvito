@@ -26,6 +26,9 @@ function Form() {
     const title = useInput("", {isEmpty: true, isString: true, minLength: 3, maxLength: 50});
     const location = useInput("", {isEmpty: true, isString: true, minLength: 3, maxLength: 50});
     const photo = useInput("", {isEmpty: true, isUrl: true, minLength: 5, maxLength: 1000});
+    const categoryInput1 = useInput("", {isEmpty: true, minLength: 1, maxLength: 30});
+    const categoryInput2 = useInput("", {isEmpty: true, minLength: 1, maxLength: 30});
+    const categoryInput3 = useInput("", {isEmpty: true, minLength: 1, maxLength: 30});
 
     function onChangeSelect(value: string) {
         setCategory(value);
@@ -54,7 +57,7 @@ function Form() {
                     {(!description.isEmpty && description.isDirty && description.maxLengthError) && " Слишком длинное описание"}
                 </p>
                 <input className="form__input" placeholder="Локация авто/услуги/недвижимости"
-                       type="text" required maxLength={30} minLength={5} onBlur={location.onBlur}
+                       type="text" required onBlur={location.onBlur}
                        onChange={location.onChange}/>
                 <p className={`form__error ${((location.isEmpty && location.isDirty) || 
                     (!location.isEmpty && location.isDirty && (location.stringError || location.minLengthError || location.maxLengthError))) && "form__error_visible"}`}>
@@ -77,6 +80,7 @@ function Form() {
                     realEstateNames : category === "Авто" ? autoNames : servicesNames} types={category === "Недвижимость" ?
                     realEstateTypes : category === "Авто" ? autoTypes : servicesTypes} requirements={category === "Недвижимость" ?
                     realEstateRequirements : category === "Авто" ? autoRequirements : servicesRequirements}
+                                           validations={[categoryInput1, categoryInput2, categoryInput3]}
                 />}
 
                 <button className="form__button">Отправить</button>

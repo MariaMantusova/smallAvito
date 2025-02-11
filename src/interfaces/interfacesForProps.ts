@@ -1,5 +1,5 @@
 import React from "react";
-import {ISearchOption} from "./mainInterfaces";
+import {ISearchOption, IValidations} from "./mainInterfaces";
 
 export interface IPropsPagination {
     listItemsPerPage: number
@@ -18,5 +18,6 @@ export interface IPropsCategoryForm {
     names: string[];
     types: string[];
     options: ISearchOption[];
+    validations: any[];
     requirements: boolean[];
 }
