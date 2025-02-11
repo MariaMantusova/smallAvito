@@ -19,7 +19,6 @@
     width: 50%;
     margin: 0 auto;
     align-items: center;
-    gap: 40px;
 }
 
 .form__input {
@@ -29,6 +28,18 @@
     width: 100%;
     box-sizing: border-box;
     border-bottom: 1px solid var(--main-orange-color);
+}
+
+.form__error {
+    color: red;
+    font-weight: lighter;
+    font-size: 10px;
+    padding: 15px 0 30px;
+    visibility: hidden;
+}
+
+.form__error_visible {
+    visibility: visible;
 }
 
 .form__button {
