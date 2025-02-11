@@ -1,6 +1,7 @@
 {
   "name": "avito-mini",
   "version": "0.1.0",
+  "homepage": "/list",
   "private": true,
   "dependencies": {
     "@types/jest": "^29.5.14",
