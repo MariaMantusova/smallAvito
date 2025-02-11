@@ -14,7 +14,7 @@ function Form() {
                 <input className="form__input" placeholder="Название авто/услуги/недвижимости"
                        type="text" required maxLength={30} minLength={5}/>
                 <textarea className="form__input" placeholder="Описание авто/услуги/недвижимости"
-                          required maxLength={100} minLength={5} />
+                          required maxLength={1000} minLength={5} />
                 <input className="form__input" placeholder="Локация авто/услуги/недвижимости"
                        type="text" required maxLength={30} minLength={5} />
                 <input className="form__input" placeholder="Фото авто/услуги/недвижимости"

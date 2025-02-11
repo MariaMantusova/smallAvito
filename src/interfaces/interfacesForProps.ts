@@ -7,3 +7,8 @@ export interface IPropsPagination {
     setCurrentPage: React.Dispatch<React.SetStateAction<number>>
     currentPage: number
 }
+
+export interface IPropsItemInfoSubtitle {
+    title: string
+    value: string
+}
