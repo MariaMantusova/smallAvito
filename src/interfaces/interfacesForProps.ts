@@ -1,4 +1,5 @@
 import React from "react";
+import {ISearchOption} from "./mainInterfaces";
 
 export interface IPropsPagination {
     listItemsPerPage: number
@@ -11,4 +12,11 @@ export interface IPropsPagination {
 export interface IPropsItemInfoSubtitle {
     title: string
     value: string
+}
+
+export interface IPropsCategoryForm {
+    names: string[];
+    types: string[];
+    options: ISearchOption[];
+    requirements: boolean[];
 }

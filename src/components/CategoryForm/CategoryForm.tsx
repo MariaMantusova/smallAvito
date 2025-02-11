@@ -1,15 +1,18 @@
 import React from "react";
 import "./CategoryForm.css";
 import {Select} from "antd";
-import {searchOptionsRealEstate} from "../../data/searchOptions";
+import {IPropsCategoryForm} from "../../interfaces/interfacesForProps";
 
-function CategoryForm() {
+function CategoryForm(props: IPropsCategoryForm) {
     return (
         <div className="category-form">
-            <Select placeholder="Выберите тип недвижимости" aria-required options={searchOptionsRealEstate} />
-            <input className="category-form__input" required type="text" placeholder="Площадь (кв. м.)" />
-            <input className="category-form__input" required type="number" placeholder="Количество комнат" />
-            <input className="category-form__input" required type="number" placeholder="Цена" />
+            <Select placeholder={props.names[3]} aria-required options={props.options} />
+            <input className="category-form__input" required={props.requirements[0]}
+                   type={props.types[0]} placeholder={props.names[0]} />
+            <input className="category-form__input" required={props.requirements[1]}
+                   type={props.types[1]} placeholder={props.names[1]} />
+            <input className="category-form__input" required={props.requirements[2]}
+                   type={props.types[2]} placeholder={props.names[2]} />
         </div>
     )
 }

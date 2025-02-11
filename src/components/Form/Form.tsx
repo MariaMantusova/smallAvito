@@ -1,16 +1,35 @@
 import React, {useState} from "react";
 import "./Form.css";
 import {Select} from "antd";
-import {searchOptions} from "../../data/searchOptions";
+import {
+    searchOptions,
+    searchOptionsAuto,
+    searchOptionsRealEstate,
+    searchOptionsServices
+} from "../../data/searchOptions";
 import {useInput} from "../../hooks/ValidationHook/ValidationHook";
 import CategoryForm from "../CategoryForm/CategoryForm";
+import validation from "ajv/dist/vocabularies/validation";
+import {
+    autoNames, autoRequirements,
+    autoTypes,
+    realEstateNames, realEstateRequirements,
+    realEstateTypes,
+    servicesNames, servicesRequirements,
+    servicesTypes
+} from "../../data/categoriesData";
 
 function Form() {
-    const [isCategoryChosen, setIsCategoryChosen] = useState(false);
+    const [category, setCategory] = useState("");
+
     const description = useInput("", {isEmpty: true, isString: true, minLength: 30, maxLength: 500});
     const title = useInput("", {isEmpty: true, isString: true, minLength: 3, maxLength: 50});
     const location = useInput("", {isEmpty: true, isString: true, minLength: 3, maxLength: 50});
     const photo = useInput("", {isEmpty: true, isUrl: true, minLength: 5, maxLength: 1000});
+
+    function onChangeSelect(value: string) {
+        setCategory(value);
+    }
 
     return(
         <section className="form-section">
@@ -44,16 +63,21 @@ function Form() {
                     {(!location.isEmpty && location.isDirty && location.minLengthError) && " Слишком короткое описание локации"}
                     {(!location.isEmpty && location.isDirty && location.maxLengthError) && " Слишком длинное описание локации"}
                 </p>
-                <input className="form__input" placeholder="Фото авто/услуги/недвижимости"
+                <input className="form__input" placeholder="Ссылка на фото авто/услуги/недвижимости"
                        type="url" required onBlur={photo.onBlur} onChange={photo.onChange}/>
                 <p className={`form__error ${(!photo.isEmpty && photo.isDirty && (photo.urlError || photo.minLengthError || photo.maxLengthError)) && "form__error_visible"}`}>
                     {(!photo.isEmpty && photo.isDirty && photo.urlError) && " Данная ссылка не действительна"}
                     {(!photo.isEmpty && photo.isDirty && photo.minLengthError) && " Слишком короткая ссылка"}
                     {(!photo.isEmpty && photo.isDirty && photo.maxLengthError) && " Слишком длинная ссылка"}
                 </p>
-                <Select placeholder="Выберете категорию" style={{width: "100%"}} aria-required options={searchOptions}/>
+                <Select placeholder="Выберете категорию" onChange={onChangeSelect} style={{width: "100%"}} options={searchOptions}/>
 
-                {isCategoryChosen && <CategoryForm/>}
+                {category && <CategoryForm options={category === "Недвижимость" ? searchOptionsRealEstate :
+                    category === "Авто" ? searchOptionsAuto : searchOptionsServices} names={category === "Недвижимость" ?
+                    realEstateNames : category === "Авто" ? autoNames : servicesNames} types={category === "Недвижимость" ?
+                    realEstateTypes : category === "Авто" ? autoTypes : servicesTypes} requirements={category === "Недвижимость" ?
+                    realEstateRequirements : category === "Авто" ? autoRequirements : servicesRequirements}
+                />}
 
                 <button className="form__button">Отправить</button>
             </form>
