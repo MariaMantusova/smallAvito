@@ -1,0 +1,50 @@
+.pagination {
+  display: flex;
+  gap: 15px;
+  list-style: none;
+  padding: 0;
+  align-items: center;
+  margin: 30px auto;
+  justify-content: center;
+}
+
+.pagination__item {
+  font-size: 18px;
+  font-weight: 300;
+  padding: 5px 8px;
+  border: 1px solid var(--main-orange-color);
+  cursor: pointer;
+  transition: background-color 0.4s ease-in-out;
+}
+
+.pagination__item:hover {
+  background-color: var(--main-orange-color);
+}
+
+.pagination__item_current {
+  border-color: var(--main-green-color);
+}
+
+.pagination__vector_button {
+  color: var(--main-orange-color);
+  font-size: 15px;
+  cursor: pointer;
+  transition: color 0.4s ease-in-out;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+.pagination__vector_button:hover {
+  color: var(--main-green-color);
+}
+
+.pagination__vector_button:disabled {
+  cursor: not-allowed;
+  color: gray;
+}
+
+.pagination__vector_button:disabled:hover {
+  color: gray;
+}

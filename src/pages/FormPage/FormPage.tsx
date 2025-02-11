@@ -1,8 +1,15 @@
 import React from 'react';
+import Header from '../../components/Header/Header';
+import Footer from "../../components/Footer/Footer";
+import Form from "../../components/Form/Form";
 
 function FormPage() {
     return (
-        <h1>Form page</h1>
+        <>
+            <Header/>
+            <Form />
+            <Footer />
+        </>
     )
 }
 

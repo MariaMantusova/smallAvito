@@ -1,0 +1,21 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    width: 80vw;
+    margin: 0 auto;
+}
+
+.header__name {
+    font-size: 30px;
+}
+
+.header__link {
+    color: #fff;
+    font-weight: lighter;
+    font-size: 16px;
+    background-color: var(--main-green-color);
+    padding: 15px 30px;
+    border-radius: 30px;
+}
