@@ -11,7 +11,7 @@ export interface IPropsPagination {
 
 export interface IPropsItemInfoSubtitle {
     title: string
-    value: string
+    value: string | number | undefined
 }
 
 export interface IPropsCategoryForm {
@@ -23,6 +23,10 @@ export interface IPropsCategoryForm {
     requirements: boolean[];
 }
 
+export interface IPropsItemPage {
+    getItem: (id: string | undefined) => void;
+    currentItem: IItemServices | IItemAuto | IItemRealEstate | undefined
+}
 
 export interface IPropsListPage {
     items: (IItemRealEstate | IItemAuto | IItemServices)[]
@@ -34,4 +38,23 @@ export interface IPropsList {
 
 export interface IPropsListItem {
     item: IItemRealEstate | IItemAuto | IItemServices;
+}
+
+export interface IPropsItemMainInfo {
+    item: IItemRealEstate | IItemAuto | IItemServices | undefined;
+    image: any
+    values: (string | number | undefined)[]
+    subCategories: string[]
+}
+
+export interface IPropsItemRealEstate {
+    item: IItemRealEstate;
+}
+
+export interface IPropsItemCar {
+    item: IItemAuto;
+}
+
+export interface IPropsItemServices {
+    item: IItemServices;
 }

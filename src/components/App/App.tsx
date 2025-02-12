@@ -8,7 +8,8 @@ import {IItemAuto, IItemRealEstate, IItemServices} from "../../interfaces/mainIn
 import {itemsApi} from "../../utils/ItemsApi";
 
 function App() {
-    const [items, setItems] = useState([]);
+    const [items, setItems] = useState<(IItemAuto | IItemRealEstate | IItemServices)[]>([]);
+    const [currentItem, setCurrentItem] = useState<IItemAuto | IItemRealEstate | IItemServices>();
 
     useEffect(() => {
         getItems();
@@ -20,11 +21,17 @@ function App() {
             .catch((err) => console.log(err))
     }
 
+    function getItemByID(id: string | undefined) {
+        itemsApi.getItemByID(id)
+            .then((item) => setCurrentItem(item))
+            .catch((err) => console.log(err))
+    }
+
     return (
         <Routes>
             <Route path="/form" element={<FormPage />}></Route>
             <Route path="/list" element={<ListPage items={items} />}></Route>
-            <Route path="/item/:id" element={<ItemPage />}></Route>
+            <Route path="/item/:id" element={<ItemPage currentItem={currentItem} getItem={getItemByID} />}></Route>
             <Route path="*" element={<NotFoundPage />}></Route>
         </Routes>
     )

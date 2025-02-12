@@ -22,6 +22,20 @@ class ItemApi {
             })
             .catch((err) => console.log(err));
     }
+
+    getItemByID(id: string | undefined) {
+        return fetch(`/items/${id}`, {
+            headers: this._header
+        })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                } else {
+                    return Promise.reject(new Error(res.status.toString()));
+                }
+            })
+            .catch((err) => console.log(err));
+    }
 }
 
 const ItemApiOptions = {

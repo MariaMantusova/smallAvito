@@ -18,41 +18,32 @@ export interface IApiOptions {
     };
 }
 
-export interface IItemRealEstate {
+interface IItem {
     name: string,
     description: string,
     location: string,
     type: string,
+    photo?: string,
+    id: number
+}
+
+export interface IItemRealEstate extends IItem {
     propertyType: string,
     area: number,
     rooms: number,
     price: number,
-    photo?: string,
-    id: number
 }
 
-export interface IItemAuto {
-    name: string,
-    description: string,
-    location: string,
-    type: string,
+export interface IItemAuto extends IItem {
     brand: string,
     model: string,
     year: number,
     mileage?: number,
-    photo?: string,
-    id: number
 }
 
-export interface IItemServices {
-    name: string,
-    description: string,
-    location: string,
-    type: string,
+export interface IItemServices extends IItem  {
     serviceType: string,
     experience: number,
     cost: number,
     workSchedule?: string,
-    photo?: string,
-    id: number
 }

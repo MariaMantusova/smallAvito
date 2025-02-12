@@ -22,7 +22,7 @@ function ListItem(props: IPropsListItem) {
                 <ItemInfoSubtitle title="Категория" value={item.type} />
        </div>
 
-            <Link to="/item/7" className="list-item__link">Открыть</Link>
+            <Link to={`/item/${item.id}`} className="list-item__link">Открыть</Link>
         </li>
     )
 }
