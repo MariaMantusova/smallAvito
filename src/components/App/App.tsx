@@ -10,7 +10,6 @@ import {itemsApi} from "../../utils/ItemsApi";
 function App() {
     const [items, setItems] = useState<(IItemAuto | IItemRealEstate | IItemServices)[]>([]);
     const [currentItem, setCurrentItem] = useState<IItemAuto | IItemRealEstate | IItemServices>();
-    // const [newItem, setNewItem] = useState<IItemAuto | IItemRealEstate | IItemServices>()
 
     useEffect(() => {
         getItems();
@@ -38,9 +37,17 @@ function App() {
             .catch((err) => console.log(err))
     }
 
+    function changeItem(id: string | undefined, item: IItemAuto | IItemRealEstate | IItemServices) {
+        if (!item) return undefined;
+
+        itemsApi.changeItem(id, item)
+            .then((item) => setCurrentItem(item))
+            .catch((err) => console.log(err))
+    }
+
     return (
         <Routes>
-            <Route path="/form" element={<FormPage onSubmit={addNewItem} />}></Route>
+            <Route path="/form" element={<FormPage currentItem={currentItem} addNewItem={addNewItem} changeItem={changeItem} />}></Route>
             <Route path="/list" element={<ListPage items={items} />}></Route>
             <Route path="/item/:id" element={<ItemPage currentItem={currentItem} getItem={getItemByID} />}></Route>
             <Route path="*" element={<NotFoundPage />}></Route>

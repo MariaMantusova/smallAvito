@@ -55,6 +55,22 @@ class ItemApi {
             .catch((err) => console.log(err));
     }
 
+    changeItem(id: string | undefined, data: RequestBody) {
+        return fetch(`/items/${id}`, {
+            method: 'PUT',
+            headers: this._header,
+            body: JSON.stringify(data)
+        })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                } else {
+                    return Promise.reject(new Error(res.status.toString()));
+                }
+            })
+            .catch((err) => console.log(err));
+    }
+
 }
 
 const ItemApiOptions = {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FormEvent} from "react";
 import {IItemAuto, IItemRealEstate, IItemServices, ISearchOption} from "./mainInterfaces";
 
 export interface IPropsPagination {
@@ -60,9 +60,29 @@ export interface IPropsItemServices {
 }
 
 export interface IPropsForm {
+    onSubmit: (evt: FormEvent) => void;
+    title: any;
+    description: any;
+    photo: any;
+    location: any;
+    isDisabled: boolean;
+    onChangeSelect: (value: string) => void;
+    category: string;
+    setSubcategory: React.Dispatch<React.SetStateAction<string>>;
+    validations: any[];
+}
+
+export interface IPropsFormChange {
+    onSubmit: (id: string | undefined, data: IItemServices | IItemAuto | IItemRealEstate) => void | undefined;
+    currentItem: IItemServices | IItemAuto | IItemRealEstate;
+}
+
+export interface IPropsFormAdd {
     onSubmit: (data: IItemServices | IItemAuto | IItemRealEstate) => void | undefined;
 }
 
 export interface IPropsFormPage {
-    onSubmit: (data: IItemServices | IItemAuto | IItemRealEstate) => void | undefined;
+    addNewItem: (data: IItemServices | IItemAuto | IItemRealEstate) => void | undefined;
+    changeItem: (id: string | undefined, data: IItemServices | IItemAuto | IItemRealEstate) => void | undefined;
+    currentItem: IItemServices | IItemAuto | IItemRealEstate | undefined;
 }
