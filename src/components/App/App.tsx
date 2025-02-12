@@ -22,6 +22,8 @@ function App() {
     }
 
     function getItemByID(id: string | undefined) {
+        if (!id) return undefined;
+
         itemsApi.getItemByID(id)
             .then((item) => setCurrentItem(item))
             .catch((err) => console.log(err))
