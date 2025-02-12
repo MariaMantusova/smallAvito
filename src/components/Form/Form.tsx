@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./Form.css";
 import {Select} from "antd";
 import {
@@ -12,8 +12,9 @@ import {
     autoTypes, realEstateNames, realEstateRequirements,
     realEstateTypes, servicesNames, servicesRequirements, servicesTypes
 } from "../../data/categoriesData";
+import {IPropsForm} from "../../interfaces/interfacesForProps";
 
-function Form() {
+function Form(props: IPropsForm) {
     const [category, setCategory] = useState("");
     const [subcategory, setSubcategory] = useState("");
 
@@ -26,15 +27,58 @@ function Form() {
     const categoryInput3 = useInput("", {isEmpty: true, minLength: 1, maxLength: 30});
 
     const isDisabled: boolean = !category || !subcategory || !description.inputValid
-        || !title.inputValid || !location.inputValid || !photo.inputValid
-        || !categoryInput1.inputValid || !categoryInput2.inputValid || category && category === "Недвижимость" ? !categoryInput3.inputValid : false
+    || !title.inputValid || !location.inputValid || !photo.inputValid
+    || !categoryInput1.inputValid || !categoryInput2.inputValid || category && category === "Недвижимость" ? !categoryInput3.inputValid : false
 
     function onChangeSelect(value: string) {
         setCategory(value);
     }
 
+    function onSubmit(evt: any) {
+        evt.preventDefault();
+
+        if (category === "Недвижимость") {
+            props.onSubmit({
+                name: title.value,
+                description: description.value,
+                location: location.value,
+                type: category,
+                propertyType: subcategory,
+                price: +categoryInput3.value,
+                area: +categoryInput1.value,
+                rooms: +categoryInput2.value,
+            });
+        }
+
+        if (category === "Услуги") {
+            props.onSubmit({
+                name: title.value,
+                description: description.value,
+                location: location.value,
+                type: category,
+                serviceType: subcategory,
+                experience: +categoryInput1.value,
+                cost: +categoryInput2.value,
+                workSchedule: categoryInput3.value,
+            })
+        }
+
+        if (category === "Авто") {
+            props.onSubmit({
+                name: title.value,
+                description: description.value,
+                location: location.value,
+                type: category,
+                brand: subcategory,
+                model: categoryInput1.value,
+                year: +categoryInput2.value,
+                mileage: +categoryInput3.value,
+            })
+        }
+    }
+
     return(
-        <section className="form-section">
+        <section className="form-section" onSubmit={onSubmit}>
             <h1 className="form-section__title">Форма размещения</h1>
             <form className="form">
                 <input className="form__input" placeholder="Название авто/услуги/недвижимости"
@@ -66,7 +110,7 @@ function Form() {
                     {(!location.isEmpty && location.isDirty && location.maxLengthError) && " Слишком длинное описание локации"}
                 </p>
                 <input className="form__input" placeholder="Ссылка на фото авто/услуги/недвижимости"
-                       type="url" required onBlur={photo.onBlur} onChange={photo.onChange}/>
+                       type="url" onBlur={photo.onBlur} onChange={photo.onChange}/>
                 <p className={`form__error ${(!photo.isEmpty && photo.isDirty && (photo.urlError || photo.minLengthError || photo.maxLengthError)) && "form__error_visible"}`}>
                     {(!photo.isEmpty && photo.isDirty && photo.urlError) && " Данная ссылка не действительна"}
                     {(!photo.isEmpty && photo.isDirty && photo.minLengthError) && " Слишком короткая ссылка"}
@@ -75,9 +119,12 @@ function Form() {
                 <Select placeholder="Выберете категорию" onChange={onChangeSelect} style={{width: "100%"}} options={searchOptions}/>
 
                 {category && <CategoryForm options={category === "Недвижимость" ? searchOptionsRealEstate :
-                    category === "Авто" ? searchOptionsAuto : searchOptionsServices} names={category === "Недвижимость" ?
-                    realEstateNames : category === "Авто" ? autoNames : servicesNames} types={category === "Недвижимость" ?
-                    realEstateTypes : category === "Авто" ? autoTypes : servicesTypes} requirements={category === "Недвижимость" ?
+                    category === "Авто" ? searchOptionsAuto : searchOptionsServices}
+                                           names={category === "Недвижимость" ?
+                    realEstateNames : category === "Авто" ? autoNames : servicesNames}
+                                           types={category === "Недвижимость" ?
+                    realEstateTypes : category === "Авто" ? autoTypes : servicesTypes}
+                                           requirements={category === "Недвижимость" ?
                     realEstateRequirements : category === "Авто" ? autoRequirements : servicesRequirements}
                                            setSubcategory={setSubcategory}
                                            validations={[categoryInput1, categoryInput2, categoryInput3]}

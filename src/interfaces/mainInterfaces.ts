@@ -24,7 +24,7 @@ interface IItem {
     location: string,
     type: string,
     photo?: string,
-    id: number
+    id?: number
 }
 
 export interface IItemRealEstate extends IItem {

@@ -1,5 +1,5 @@
 import React from "react";
-import {IItemAuto, IItemRealEstate, IItemServices, ISearchOption, IValidations} from "./mainInterfaces";
+import {IItemAuto, IItemRealEstate, IItemServices, ISearchOption} from "./mainInterfaces";
 
 export interface IPropsPagination {
     listItemsPerPage: number
@@ -57,4 +57,12 @@ export interface IPropsItemCar {
 
 export interface IPropsItemServices {
     item: IItemServices;
+}
+
+export interface IPropsForm {
+    onSubmit: (data: IItemServices | IItemAuto | IItemRealEstate) => void | undefined;
+}
+
+export interface IPropsFormPage {
+    onSubmit: (data: IItemServices | IItemAuto | IItemRealEstate) => void | undefined;
 }
