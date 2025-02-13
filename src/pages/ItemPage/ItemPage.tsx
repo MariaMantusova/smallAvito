@@ -20,8 +20,8 @@ function ItemPage(props: IPropsItemPage) {
 
     return (
         <>
-            <Header setCurrentItem={props.setCurrentItem}/>
-
+            <Header setCurrentItem={props.setCurrentItem}
+                    to="/form" linkTitle="Разместить объявление"/>
             {item?.type === "Недвижимость" ? <ItemRealEstate item={item as IItemRealEstate} /> :
                 item?.type === "Услуги" ? <ItemServices item={item as IItemServices} /> :
                     <ItemCar item={item as IItemAuto} />}

@@ -9,7 +9,7 @@ import FormChange from "../../components/Form/FormChange";
 function FormPage(props: IPropsFormPage) {
     return (
         <>
-            <Header/>
+            <Header to="/list" linkTitle="К списку объявлений" />
             {props.currentItem ?
                 props.currentItem.type === "Авто" ?
                     <FormChange onSubmit={props.changeItem}

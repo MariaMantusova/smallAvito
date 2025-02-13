@@ -10,6 +10,8 @@ export interface IPropsPagination {
 }
 
 export interface IPropsHeader {
+    to: string
+    linkTitle: string
     setCurrentItem?: React.Dispatch<React.SetStateAction<IItemRealEstate | IItemServices | IItemAuto | undefined>>
 }
 
