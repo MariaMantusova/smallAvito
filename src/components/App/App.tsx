@@ -15,6 +15,8 @@ function App() {
     const [currentItem, setCurrentItem] = useState<IItemAuto | IItemRealEstate | IItemServices>();
 
     useEffect(() => {
+        if (!items) return;
+
         if (currentCategory === "Недвижимость") setCurrentItems(items.filter((item) => item.type === "Недвижимость"));
         else if (currentCategory === "Услуги") setCurrentItems(items.filter((item) => item.type === "Услуги"));
         else if (currentCategory === "Авто") setCurrentItems(items.filter((item) => item.type === "Авто"));
@@ -22,9 +24,10 @@ function App() {
     }, [items, currentCategory]);
 
     useEffect(() => {
+        if (!items) return;
+
         setCurrentItems(items.filter((item) => item.name.toLowerCase().includes(searchTerm)));
     }, [items, searchTerm]);
-
 
     useEffect(() => {
         getItems();
@@ -49,15 +52,21 @@ function App() {
 
         itemsApi.addItem(newItem)
             .then((item) => setItems([...items, item]))
-            .catch((err) => console.log(err))
+            .catch((err) => prompt("Произошла ошибка"));
     }
 
     function changeItem(id: number | undefined, item: IItemAuto | IItemRealEstate | IItemServices) {
         if (!item) return undefined;
 
         itemsApi.changeItem(id, item)
-            .then((item) => setCurrentItem(item))
-            .catch((err) => console.log(err))
+            .then((item) => {
+                items.map((card) => {
+                    if (card.id === id) card = item;
+                });
+
+                setItems(items);
+            })
+            .catch((err) => prompt("Произошла ошибка"));
     }
 
     return (
@@ -65,7 +74,7 @@ function App() {
             <Route path="/form" element={<FormPage currentItem={currentItem} addNewItem={addNewItem}
                                                    changeItem={changeItem} />} />
             <Route path="/list" element={<ListPage setCurrentCategory={setCurrentCategory}
-                                                   items={currentItems}
+                                                   items={currentItems} setCurrentItem={setCurrentItem}
                                                    setSearchTerm={setSearchTerm} />} />
             <Route path="/item/:id" element={<ItemPage currentItem={currentItem}
                                                        setCurrentItem={setCurrentItem}

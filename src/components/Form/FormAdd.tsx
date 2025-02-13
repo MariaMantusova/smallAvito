@@ -12,14 +12,15 @@ function FormAdd(props: IPropsFormAdd) {
     const description = useInput("", {isEmpty: true, isString: true, minLength: 30, maxLength: 500});
     const title = useInput("", {isEmpty: true, isString: true, minLength: 3, maxLength: 50});
     const location = useInput("", {isEmpty: true, isString: true, minLength: 3, maxLength: 50});
-    const photo = useInput("", {isEmpty: true, isUrl: true, minLength: 5, maxLength: 1000});
+    const photo = useInput("", { isEmpty: true, isUrl: true, minLength: 5, maxLength: 1000 });
     const categoryInput1 = useInput("", {isEmpty: true, minLength: 1, maxLength: 30});
     const categoryInput2 = useInput("", {isEmpty: true, minLength: 1, maxLength: 30});
     const categoryInput3 = useInput("", {isEmpty: true, minLength: 1, maxLength: 30});
 
     const isDisabled: boolean = !category || !subcategory || !description.inputValid
-    || !title.inputValid || !location.inputValid || !photo.inputValid
-    || !categoryInput1.inputValid || !categoryInput2.inputValid || !categoryInput3.inputValid
+    || !title.inputValid || !location.inputValid || (!photo.isEmpty && !photo.inputValid)
+    || !categoryInput1.inputValid || !categoryInput2.inputValid || (category === "Недвижимость" ?
+        !categoryInput3.inputValid : categoryInput3.inputValid)
 
     function onChangeSelect(value: string) {
         setCategory(value);

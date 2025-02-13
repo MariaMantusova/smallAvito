@@ -25,12 +25,15 @@ const FormInput = (props: IPropsFormInput) => (
         <p className={`form__error ${(props.required && props.field.isDirty && 
             (props.required && props.field.isEmpty || props.field.stringError ||
                 props.field.minLengthError || props.field.maxLengthError ||
-                props.field.urlError)) && "form__error_visible"}`}>
-            {props.field.isEmpty && "Поле не может быть пустым"}
+                props.field.urlError) || (!props.required && !props.field.isEmpty
+                && props.field.minLengthError
+                || props.field.maxLengthError ||
+                props.field.urlError))  && "form__error_visible"}`}>
+            {props.required && props.field.isEmpty && "Поле не может быть пустым"}
             {props.field.stringError && " Поле не может содержать данный символ"}
-            {props.field.minLengthError && " Слишком короткое значение"}
+            {props.required && props.field.minLengthError && " Слишком короткое значение"}
             {props.field.maxLengthError && " Слишком длинное значение"}
-            {props.field.urlError && " Данная ссылка не действительна"}
+            {!props.required && !props.field.isEmpty && props.field.urlError && " Данная ссылка не действительна"}
         </p>
     </>
 );

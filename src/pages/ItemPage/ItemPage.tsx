@@ -7,6 +7,7 @@ import ItemServices from "../../components/Item/ItemServices";
 import ItemCar from "../../components/Item/ItemCar";
 import {IItemAuto, IItemRealEstate, IItemServices} from "../../interfaces/mainInterfaces";
 import {IPropsItemPage} from "../../interfaces/interfacesForProps";
+import NotFoundPage from "../NotFoundPage/NotFoundPage";
 
 function ItemPage(props: IPropsItemPage) {
     const { id } = useParams();
@@ -16,7 +17,7 @@ function ItemPage(props: IPropsItemPage) {
         if (id) props.getItem(id);
     }, [id]);
 
-    if (!item) return <p>Загрузка...</p>;
+    if (!item) return <NotFoundPage />;
 
     return (
         <>

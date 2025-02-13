@@ -2,7 +2,7 @@ import React from "react";
 import "./Form.css";
 import {Select} from "antd";
 import {
-    searchOptions, searchOptionsAuto,
+    searchOptionsAuto, searchOptionsForm,
     searchOptionsRealEstate, searchOptionsServices
 } from "../../../data/searchOptions";
 import CategoryForm from "../../CategoryForm/CategoryForm";
@@ -60,8 +60,7 @@ function Form(props: IPropsForm) {
                     placeholder="Выберите категорию"
                     onChange={props.onChangeSelect}
                     style={{ width: "100%" }}
-                    options={searchOptions}
-                    value={props.category}
+                    options={searchOptionsForm}
                 />
 
                 {props.category && (

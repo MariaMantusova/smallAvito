@@ -8,7 +8,7 @@ import {IPropsListPage} from "../../interfaces/interfacesForProps";
 function ListPage(props: IPropsListPage) {
     return (
         <>
-            <Header to="/form" linkTitle="Разместить объявление"/>
+            <Header setCurrentItem={props.setCurrentItem} to="/form" linkTitle="Разместить объявление"/>
             <SearchSection setSearchTerm={props.setSearchTerm}
                            setCurrentCategory={props.setCurrentCategory} />
             <ListComponent items={props.items} />
