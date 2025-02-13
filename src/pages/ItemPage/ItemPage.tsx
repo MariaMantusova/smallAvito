@@ -20,7 +20,7 @@ function ItemPage(props: IPropsItemPage) {
 
     return (
         <>
-            <Header/>
+            <Header setCurrentItem={props.setCurrentItem}/>
 
             {item?.type === "Недвижимость" ? <ItemRealEstate item={item as IItemRealEstate} /> :
                 item?.type === "Услуги" ? <ItemServices item={item as IItemServices} /> :

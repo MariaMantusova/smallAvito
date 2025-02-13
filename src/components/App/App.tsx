@@ -49,7 +49,8 @@ function App() {
         <Routes>
             <Route path="/form" element={<FormPage currentItem={currentItem} addNewItem={addNewItem} changeItem={changeItem} />}></Route>
             <Route path="/list" element={<ListPage items={items} />}></Route>
-            <Route path="/item/:id" element={<ItemPage currentItem={currentItem} getItem={getItemByID} />}></Route>
+            <Route path="/item/:id" element={<ItemPage currentItem={currentItem} setCurrentItem={setCurrentItem}
+                                                       getItem={getItemByID} />}></Route>
             <Route path="*" element={<NotFoundPage />}></Route>
         </Routes>
     )

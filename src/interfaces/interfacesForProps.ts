@@ -9,6 +9,10 @@ export interface IPropsPagination {
     currentPage: number
 }
 
+export interface IPropsHeader {
+    setCurrentItem?: React.Dispatch<React.SetStateAction<IItemRealEstate | IItemServices | IItemAuto | undefined>>
+}
+
 export interface IPropsItemInfoSubtitle {
     title: string
     value: string | number | undefined
@@ -27,6 +31,7 @@ export interface IPropsCategoryForm {
 export interface IPropsItemPage {
     getItem: (id: string | undefined) => void;
     currentItem: IItemServices | IItemAuto | IItemRealEstate | undefined
+    setCurrentItem?: React.Dispatch<React.SetStateAction<IItemRealEstate | IItemServices | IItemAuto | undefined>>
 }
 
 export interface IPropsListPage {
