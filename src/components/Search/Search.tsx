@@ -8,7 +8,9 @@ import {IPropsSearchSection} from "../../interfaces/interfacesForProps";
 const { Search } = Input;
 
 function SearchSection(props: IPropsSearchSection) {
-    function onSearchInput() {}
+    function onSearchInput(value: string) {
+        props.setSearchTerm(value.toLowerCase());
+    }
 
     function onChangeSelect(value: string) {
         props.setCurrentCategory(value);
