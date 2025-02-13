@@ -17,10 +17,13 @@ function FormAdd(props: IPropsFormAdd) {
 
     const isDisabled: boolean = !category || !subcategory || !description.inputValid
     || !title.inputValid || !location.inputValid || !photo.inputValid
-    || !categoryInput1.inputValid || !categoryInput2.inputValid || category && category === "Недвижимость" ? !categoryInput3.inputValid : false
+    || !categoryInput1.inputValid || !categoryInput2.inputValid || !categoryInput3.inputValid
 
     function onChangeSelect(value: string) {
         setCategory(value);
+        categoryInput1.setValue("");
+        categoryInput2.setValue("");
+        categoryInput3.setValue("");
     }
 
     function onSubmit(evt: React.FormEvent<any>) {
@@ -69,7 +72,7 @@ function FormAdd(props: IPropsFormAdd) {
     return(<Form onSubmit={onSubmit} description={description} photo={photo} location={location}
                  isDisabled={isDisabled} onChangeSelect={onChangeSelect} setSubcategory={setSubcategory}
                  validations={[categoryInput1, categoryInput2, categoryInput3]} category={category}
-                 title={title}
+                 title={title} subcategory={subcategory}
     />)
 }
 

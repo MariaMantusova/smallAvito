@@ -2,18 +2,24 @@ import React from 'react';
 import Header from '../../components/Header/Header';
 import Footer from "../../components/Footer/Footer";
 import {IPropsFormPage} from "../../interfaces/interfacesForProps";
-import FormChangeAvto from "../../components/Form/FormChangeAvto";
 import FormAdd from "../../components/Form/FormAdd";
 import {IItemAuto, IItemRealEstate, IItemServices} from "../../interfaces/mainInterfaces";
+import FormChange from "../../components/Form/FormChange";
 
 function FormPage(props: IPropsFormPage) {
     return (
         <>
             <Header/>
-            {!props.currentItem ?
-                // <FormChangeAvto onSubmit={props.changeItem as (id: string | undefined, data: IItemServices | IItemAuto | IItemRealEstate) => void | undefined}
-                //                 currentItem={props.currentItem} /> :
-                <FormAdd onSubmit={props.addNewItem as (data: IItemServices | IItemAuto | IItemRealEstate) => void | undefined} /> : <></>}
+            {props.currentItem ?
+                props.currentItem.type === "Авто" ?
+                    <FormChange onSubmit={props.changeItem}
+                                    currentItem={props.currentItem as IItemAuto} /> :
+                    props.currentItem.type === "Услуги" ?
+                        <FormChange onSubmit={props.changeItem}
+                                            currentItem={props.currentItem as IItemServices} /> :
+                        <FormChange onSubmit={props.changeItem}
+                                              currentItem={props.currentItem as IItemRealEstate} /> :
+                        <FormAdd onSubmit={props.addNewItem} />}
             <Footer />
         </>
     )

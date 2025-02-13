@@ -19,6 +19,7 @@ export interface IPropsCategoryForm {
     types: string[];
     options: ISearchOption[];
     validations: any[];
+    subcategory: string;
     setSubcategory: React.Dispatch<React.SetStateAction<string>>;
     requirements: boolean[];
 }
@@ -70,11 +71,7 @@ export interface IPropsForm {
     category: string;
     setSubcategory: React.Dispatch<React.SetStateAction<string>>;
     validations: any[];
-}
-
-export interface IPropsFormChange {
-    onSubmit: (id: string | undefined, data: IItemServices | IItemAuto | IItemRealEstate) => void | undefined;
-    currentItem: IItemServices | IItemAuto | IItemRealEstate;
+    subcategory: string;
 }
 
 export interface IPropsFormAdd {
@@ -83,6 +80,13 @@ export interface IPropsFormAdd {
 
 export interface IPropsFormPage {
     addNewItem: (data: IItemServices | IItemAuto | IItemRealEstate) => void | undefined;
-    changeItem: (id: string | undefined, data: IItemServices | IItemAuto | IItemRealEstate) => void | undefined;
+    changeItem: (id: number | undefined, data: IItemServices | IItemAuto | IItemRealEstate) => void | undefined;
     currentItem: IItemServices | IItemAuto | IItemRealEstate | undefined;
+}
+
+export interface IPropsFormInput {
+    label: string;
+    field: any;
+    type: string;
+    isTextArea: boolean;
 }

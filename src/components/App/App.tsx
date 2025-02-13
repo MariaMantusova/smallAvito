@@ -37,7 +37,7 @@ function App() {
             .catch((err) => console.log(err))
     }
 
-    function changeItem(id: string | undefined, item: IItemAuto | IItemRealEstate | IItemServices) {
+    function changeItem(id: number | undefined, item: IItemAuto | IItemRealEstate | IItemServices) {
         if (!item) return undefined;
 
         itemsApi.changeItem(id, item)

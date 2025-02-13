@@ -55,7 +55,7 @@ class ItemApi {
             .catch((err) => console.log(err));
     }
 
-    changeItem(id: string | undefined, data: RequestBody) {
+    changeItem(id: number | undefined, data: RequestBody) {
         return fetch(`/items/${id}`, {
             method: 'PUT',
             headers: this._header,

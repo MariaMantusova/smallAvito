@@ -18,7 +18,7 @@ export interface IApiOptions {
     };
 }
 
-interface IItem {
+export interface IItem {
     name: string,
     description: string,
     location: string,
