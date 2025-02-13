@@ -17,13 +17,13 @@ const FormInput = (props: IPropsFormInput) => (
                 placeholder={props.label}
                 value={props.field.value}
                 type={props.type}
-                required={!props.field.isEmpty}
+                required={props.required}
                 onBlur={props.field.onBlur}
                 onChange={props.field.onChange}
             />
         )}
-        <p className={`form__error ${(props.field.isDirty && 
-            (props.field.isEmpty || props.field.stringError ||
+        <p className={`form__error ${(props.required && props.field.isDirty && 
+            (props.required && props.field.isEmpty || props.field.stringError ||
                 props.field.minLengthError || props.field.maxLengthError ||
                 props.field.urlError)) && "form__error_visible"}`}>
             {props.field.isEmpty && "Поле не может быть пустым"}

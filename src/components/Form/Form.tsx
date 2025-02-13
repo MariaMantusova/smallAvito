@@ -44,18 +44,19 @@ function Form(props: IPropsForm) {
 
     return (
         <section className="form-section">
-            <h1 className="form-section__title">Форма размещения</h1>
+            <h1 className="form-section__title">{props.titleForm}</h1>
             <form className="form" onSubmit={props.onSubmit}>
-                <FormInput label="Название авто/услуги/недвижимости"
+                <FormInput label="Название объявления" required={true}
                            field={props.title} type="text" isTextArea={false} />
-                <FormInput label="Описание авто/услуги/недвижимости"
+                <FormInput label="Описание объявления" required={true}
                            field={props.description} type="text" isTextArea={true} />
-                <FormInput label="Локация авто/услуги/недвижимости"
+                <FormInput label="Локация объявления" required={true}
                            field={props.location} type="text" isTextArea={false} />
-                <FormInput label="Ссылка на фото авто/услуги/недвижимости"
+                <FormInput label="Ссылка на фото объявления" required={false}
                            field={props.photo} type="url" isTextArea={false} />
 
                 <Select
+                    disabled={props.isDisabledSelect}
                     placeholder="Выберите категорию"
                     onChange={props.onChangeSelect}
                     style={{ width: "100%" }}

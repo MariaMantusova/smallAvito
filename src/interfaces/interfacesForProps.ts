@@ -72,6 +72,8 @@ export interface IPropsForm {
     setSubcategory: React.Dispatch<React.SetStateAction<string>>;
     validations: any[];
     subcategory: string;
+    isDisabledSelect: boolean;
+    titleForm: string;
 }
 
 export interface IPropsFormAdd {
@@ -89,4 +91,5 @@ export interface IPropsFormInput {
     field: any;
     type: string;
     isTextArea: boolean;
+    required: boolean;
 }

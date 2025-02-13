@@ -1,4 +1,5 @@
 import {FormEvent, useEffect, useMemo, useState} from "react";
+import { useNavigate } from "react-router-dom";
 import { IItem, IItemAuto, IItemRealEstate, IItemServices } from "../../interfaces/mainInterfaces";
 import { useInput } from "../../hooks/ValidationHook/ValidationHook";
 import Form from "./Form";
@@ -11,6 +12,7 @@ interface IItemFormProps<T extends IItem> {
 function FormChangeItem<T extends IItem>({ currentItem, onSubmit }: IItemFormProps<T>) {
     const [category, setCategory] = useState(currentItem.type);
     const [subcategory, setSubcategory] = useState<string>("");
+    const navigate = useNavigate();
 
     const name = useInput(currentItem.name, { isEmpty: false, minLength: 3, maxLength: 50 });
     const description = useInput(currentItem.description, { isEmpty: false, minLength: 30, maxLength: 500 });
@@ -41,11 +43,6 @@ function FormChangeItem<T extends IItem>({ currentItem, onSubmit }: IItemFormPro
         return "serviceType" in item && "experience" in item && "cost" in item;
     }
 
-    const propertyType = useInput(
-        isRealEstate(currentItem) ? currentItem.propertyType ?? "" : "",
-        { isEmpty: false, minLength: 1, maxLength: 100 }
-    );
-
     const area = useInput(
         isRealEstate(currentItem) ? String(currentItem.area ?? "") : "",
         { isEmpty: false, minLength: 1, maxLength: 100 }
@@ -58,11 +55,6 @@ function FormChangeItem<T extends IItem>({ currentItem, onSubmit }: IItemFormPro
 
     const price = useInput(
         isRealEstate(currentItem) ? String(currentItem.price ?? "") : "",
-        { isEmpty: false, minLength: 1, maxLength: 100 }
-    );
-
-    const brand = useInput(
-        isAuto(currentItem) ? currentItem.brand ?? "" : "",
         { isEmpty: false, minLength: 1, maxLength: 100 }
     );
 
@@ -81,11 +73,6 @@ function FormChangeItem<T extends IItem>({ currentItem, onSubmit }: IItemFormPro
         { isEmpty: true, minLength: 1, maxLength: 100 }
     );
 
-    const serviceType = useInput(
-        isService(currentItem) ? currentItem.serviceType ?? "" : "",
-        { isEmpty: false, minLength: 1, maxLength: 100 }
-    );
-
     const experience = useInput(
         isService(currentItem) ? String(currentItem.experience ?? "") : "",
         { isEmpty: false, minLength: 1, maxLength: 100 }
@@ -102,8 +89,8 @@ function FormChangeItem<T extends IItem>({ currentItem, onSubmit }: IItemFormPro
     );
 
     const extraFields = isRealEstate(currentItem) ? { area, rooms, price } :
-        isAuto(currentItem) ? { brand, model, year, mileage } :
-            isService(currentItem) ? { serviceType, experience, cost, workSchedule } :
+        isAuto(currentItem) ? { model, year, mileage } :
+            isService(currentItem) ? { experience, cost, workSchedule } :
                 {};
 
     const isDisabled = useMemo(() => (
@@ -119,7 +106,6 @@ function FormChangeItem<T extends IItem>({ currentItem, onSubmit }: IItemFormPro
         evt.preventDefault();
 
         if (isDisabled) return;
-
         let data: T;
 
         if (isRealEstate(currentItem)) {
@@ -161,15 +147,15 @@ function FormChangeItem<T extends IItem>({ currentItem, onSubmit }: IItemFormPro
         }
 
         onSubmit(currentItem.id, data);
+        navigate(`/item/${currentItem.id}`);
     }
-
-    console.log()
 
     return (
         <Form onSubmit={handleSubmit} photo={photo} location={location} isDisabled={isDisabled}
               onChangeSelect={handleChangeSelect} setSubcategory={setSubcategory}
+              isDisabledSelect={true} titleForm="Редактировать объявление"
               subcategory={subcategory} category={category} title={name} description={description}
-              validations={[Object.values(extraFields)[1], Object.values(extraFields)[2],Object.values(extraFields)[3]]}
+              validations={[Object.values(extraFields)[0], Object.values(extraFields)[1],Object.values(extraFields)[2]]}
         />
     );
 }

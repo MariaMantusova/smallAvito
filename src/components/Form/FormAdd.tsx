@@ -2,10 +2,12 @@ import React, {useState} from "react";
 import {IPropsFormAdd} from "../../interfaces/interfacesForProps";
 import {useInput} from "../../hooks/ValidationHook/ValidationHook";
 import Form from "./Form";
+import {useNavigate} from "react-router-dom";
 
 function FormAdd(props: IPropsFormAdd) {
     const [category, setCategory] = useState("");
     const [subcategory, setSubcategory] = useState("");
+    const navigate = useNavigate();
 
     const description = useInput("", {isEmpty: true, isString: true, minLength: 30, maxLength: 500});
     const title = useInput("", {isEmpty: true, isString: true, minLength: 3, maxLength: 50});
@@ -67,12 +69,15 @@ function FormAdd(props: IPropsFormAdd) {
                 mileage: +categoryInput3.value,
             })
         }
+
+        navigate("/list");
     }
 
     return(<Form onSubmit={onSubmit} description={description} photo={photo} location={location}
                  isDisabled={isDisabled} onChangeSelect={onChangeSelect} setSubcategory={setSubcategory}
                  validations={[categoryInput1, categoryInput2, categoryInput3]} category={category}
-                 title={title} subcategory={subcategory}
+                 titleForm="Добавить новое объявление"
+                 title={title} subcategory={subcategory} isDisabledSelect={false}
     />)
 }
 
