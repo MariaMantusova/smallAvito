@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./CategoryForm.css";
 import {Select} from "antd";
 import {IPropsCategoryForm} from "../../interfaces/interfacesForProps";
@@ -10,11 +10,14 @@ function CategoryForm(props: IPropsCategoryForm) {
         props.setSubcategory(value);
     }
 
+    useEffect(() => {
+        props.setSubcategory("");
+    }, [props.names]);
+
     return (
         <div className="category-form">
-            <Select value={props.subcategory}
-                    placeholder={props.names[3]} onChange={onSelectChange}
-                    options={props.options}/>
+            <Select placeholder={props.names[3]} onChange={onSelectChange}
+                    options={props.options} value={props.subcategory ? props.subcategory : null} />
             <input className="category-form__input" required={props.requirements[0]} onBlur={input1.onBlur}
                    value={input1.value}
                    type={props.types[0]} placeholder={props.names[0]} onChange={input1.onChange}/>

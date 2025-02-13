@@ -1,11 +1,11 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import "./ListItem.css";
+import ItemInfoSubtitle from "../ItemInfoSubtitle/ItemInfoSubtitle";
 import carImage from "../../images/car.webp";
 import houseImage from "../../images/real-estate.webp";
 import serviceImage from "../../images/service.webp";
-import "./ListItem.css";
 import {IPropsListItem} from "../../interfaces/interfacesForProps";
-import ItemInfoSubtitle from "../ItemInfoSubtitle/ItemInfoSubtitle";
 
 function ListItem(props: IPropsListItem) {
     const item = props.item;

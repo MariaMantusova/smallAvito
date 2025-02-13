@@ -1,6 +1,6 @@
 import React from "react";
-import {IPropsItemInfoSubtitle} from "../../interfaces/interfacesForProps";
 import "./ItemInfoSubtitle.css"
+import {IPropsItemInfoSubtitle} from "../../interfaces/interfacesForProps";
 
 function ItemInfoSubtitle(props: IPropsItemInfoSubtitle) {
     return (

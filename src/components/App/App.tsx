@@ -4,10 +4,13 @@ import ItemPage from "../../pages/ItemPage/ItemPage";
 import ListPage from "../../pages/ListPage/ListPage";
 import FormPage from "../../pages/FormPage/FormPage";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
-import {IItemAuto, IItemRealEstate, IItemServices} from "../../interfaces/mainInterfaces";
 import {itemsApi} from "../../utils/ItemsApi";
+import {IItemAuto, IItemRealEstate, IItemServices} from "../../interfaces/mainInterfaces";
+import {useNavigate} from "react-router-dom";
 
 function App() {
+    const navigate = useNavigate();
+
     const [items, setItems] = useState<(IItemAuto | IItemRealEstate | IItemServices)[]>([]);
     const [currentCategory, setCurrentCategory] = useState<string>("");
     const [searchTerm, setSearchTerm] = useState<string>("");
@@ -15,6 +18,8 @@ function App() {
     const [currentItem, setCurrentItem] = useState<IItemAuto | IItemRealEstate | IItemServices>();
 
     useEffect(() => {
+        if (!items) return;
+
         if (currentCategory === "Недвижимость") setCurrentItems(items.filter((item) => item.type === "Недвижимость"));
         else if (currentCategory === "Услуги") setCurrentItems(items.filter((item) => item.type === "Услуги"));
         else if (currentCategory === "Авто") setCurrentItems(items.filter((item) => item.type === "Авто"));
@@ -22,9 +27,10 @@ function App() {
     }, [items, currentCategory]);
 
     useEffect(() => {
+        if (!items) return;
+
         setCurrentItems(items.filter((item) => item.name.toLowerCase().includes(searchTerm)));
     }, [items, searchTerm]);
-
 
     useEffect(() => {
         getItems();
@@ -48,16 +54,25 @@ function App() {
         if (!newItem) return undefined;
 
         itemsApi.addItem(newItem)
-            .then((item) => setItems([...items, item]))
-            .catch((err) => console.log(err))
+            .then((item) => {
+                setItems([...items, item]);
+                navigate(`/item/${item.id}`);
+            })
+            .catch((err) => prompt("Произошла ошибка"))
     }
 
     function changeItem(id: number | undefined, item: IItemAuto | IItemRealEstate | IItemServices) {
         if (!item) return undefined;
 
         itemsApi.changeItem(id, item)
-            .then((item) => setCurrentItem(item))
-            .catch((err) => console.log(err))
+            .then((item) => {
+                items.map((card) => {
+                    if (card.id === id) card = item;
+                });
+
+                setItems(items);
+            })
+            .catch((err) => prompt("Произошла ошибка"));
     }
 
     return (
@@ -65,7 +80,7 @@ function App() {
             <Route path="/form" element={<FormPage currentItem={currentItem} addNewItem={addNewItem}
                                                    changeItem={changeItem} />} />
             <Route path="/list" element={<ListPage setCurrentCategory={setCurrentCategory}
-                                                   items={currentItems}
+                                                   items={currentItems} setCurrentItem={setCurrentItem}
                                                    setSearchTerm={setSearchTerm} />} />
             <Route path="/item/:id" element={<ItemPage currentItem={currentItem}
                                                        setCurrentItem={setCurrentItem}

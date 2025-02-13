@@ -52,7 +52,7 @@ class ItemApi {
                     return Promise.reject(new Error(res.status.toString()));
                 }
             })
-            .catch((err) => console.log(err));
+            .catch(() => alert("Произошла ошибка"));
     }
 
     changeItem(id: number | undefined, data: RequestBody) {
@@ -68,7 +68,7 @@ class ItemApi {
                     return Promise.reject(new Error(res.status.toString()));
                 }
             })
-            .catch((err) => console.log(err));
+            .catch(() => alert("Произошла ошибка"));
     }
 
 }

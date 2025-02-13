@@ -14,6 +14,18 @@ export const searchOptions: ISearchOption[] = [{
     label: "Все",
 }]
 
+export const searchOptionsForm: ISearchOption[] = [{
+    value: "Недвижимость",
+    label: "Недвижимость",
+}, {
+    value: "Авто",
+    label: "Авто",
+}, {
+    value: "Услуги",
+    label: "Услуги",
+}]
+
+
 export const searchOptionsRealEstate: ISearchOption[] = [
     {
         value: "Квартира",

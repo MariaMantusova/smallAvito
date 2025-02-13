@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import ListComponent from "../../components/ListComponent/ListComponent";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
@@ -8,7 +8,7 @@ import {IPropsListPage} from "../../interfaces/interfacesForProps";
 function ListPage(props: IPropsListPage) {
     return (
         <>
-            <Header/>
+            <Header setCurrentItem={props.setCurrentItem} to="/form" linkTitle="Разместить объявление"/>
             <SearchSection setSearchTerm={props.setSearchTerm}
                            setCurrentCategory={props.setCurrentCategory} />
             <ListComponent items={props.items} />

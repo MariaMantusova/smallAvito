@@ -1,7 +1,7 @@
 export const autoNames: string[] = ["Модель", "Год выпуска", "Пробег", "Марка"]
 export const autoTypes: string[] = ["string", "number", "number"]
 export const autoRequirements: boolean[] = [true, true, false]
-export const realEstateNames: string[] = ["Площадь", "Количество комнат", "Цена", "Тип недвижимости"]
+export const realEstateNames: string[] = ["Площадь, кв.м.", "Количество комнат", "Цена, российский рубль", "Тип недвижимости"]
 export const realEstateTypes: string[] = ["number", "number", "number"]
 export const realEstateRequirements: boolean[] = [true, true, true]
 export const servicesNames: string[] = ["Опыт работы", "Стоимость", "График работы", "Тип услуги"]

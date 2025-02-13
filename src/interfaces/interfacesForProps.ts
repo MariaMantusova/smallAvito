@@ -1,15 +1,9 @@
 import React, {FormEvent} from "react";
-import {IItemAuto, IItemRealEstate, IItemServices, ISearchOption} from "./mainInterfaces";
-
-export interface IPropsPagination {
-    listItemsPerPage: number
-    totalListItems: number
-    paginate: (pageNumber: number) => void
-    setCurrentPage: React.Dispatch<React.SetStateAction<number>>
-    currentPage: number
-}
+import {IItem, IItemAuto, IItemRealEstate, IItemServices, ISearchOption} from "./mainInterfaces";
 
 export interface IPropsHeader {
+    to: string
+    linkTitle: string
     setCurrentItem?: React.Dispatch<React.SetStateAction<IItemRealEstate | IItemServices | IItemAuto | undefined>>
 }
 
@@ -38,6 +32,7 @@ export interface IPropsListPage {
     items: (IItemRealEstate | IItemAuto | IItemServices)[]
     setCurrentCategory: React.Dispatch<React.SetStateAction<string>>;
     setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+    setCurrentItem?: React.Dispatch<React.SetStateAction<IItemRealEstate | IItemServices | IItemAuto | undefined>>
 }
 
 export interface IPropsSearchSection {
@@ -72,6 +67,21 @@ export interface IPropsItemServices {
     item: IItemServices;
 }
 
+export interface IPropsFormPage {
+    addNewItem: (data: IItemServices | IItemAuto | IItemRealEstate) => void | undefined;
+    changeItem: (id: number | undefined, data: IItemServices | IItemAuto | IItemRealEstate) => void | undefined;
+    currentItem: IItemServices | IItemAuto | IItemRealEstate | undefined;
+}
+
+export interface IPropsFormAdd {
+    onSubmit: (data: IItemServices | IItemAuto | IItemRealEstate) => void | undefined;
+}
+
+export interface IItemFormProps<T extends IItem> {
+    currentItem: T;
+    onSubmit: (id: number | undefined, data: T) => void;
+}
+
 export interface IPropsForm {
     onSubmit: (evt: FormEvent) => void;
     title: any;
@@ -86,16 +96,6 @@ export interface IPropsForm {
     subcategory: string;
     isDisabledSelect: boolean;
     titleForm: string;
-}
-
-export interface IPropsFormAdd {
-    onSubmit: (data: IItemServices | IItemAuto | IItemRealEstate) => void | undefined;
-}
-
-export interface IPropsFormPage {
-    addNewItem: (data: IItemServices | IItemAuto | IItemRealEstate) => void | undefined;
-    changeItem: (id: number | undefined, data: IItemServices | IItemAuto | IItemRealEstate) => void | undefined;
-    currentItem: IItemServices | IItemAuto | IItemRealEstate | undefined;
 }
 
 export interface IPropsFormInput {

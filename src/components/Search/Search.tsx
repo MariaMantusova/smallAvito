@@ -19,7 +19,7 @@ function SearchSection(props: IPropsSearchSection) {
     return (
         <section className="search">
             <Select placeholder="Выберите категорию" options={searchOptions}
-                    style={{ width: "20%" }} onChange={onChangeSelect} />
+                    style={{ "maxWidth": "40%" }} onChange={onChangeSelect} />
             <Search placeholder="Введите название" onSearch={onSearchInput}
                     style={{ "width": "40%" }} enterButton />
         </section>

@@ -1,13 +1,9 @@
 import {FormEvent, useEffect, useMemo, useState} from "react";
 import { useNavigate } from "react-router-dom";
-import { IItem, IItemAuto, IItemRealEstate, IItemServices } from "../../interfaces/mainInterfaces";
 import { useInput } from "../../hooks/ValidationHook/ValidationHook";
-import Form from "./Form";
-
-interface IItemFormProps<T extends IItem> {
-    currentItem: T;
-    onSubmit: (id: number | undefined, data: T) => void;
-}
+import Form from "./Form/Form";
+import {IItemFormProps} from "../../interfaces/interfacesForProps";
+import { IItem, IItemAuto, IItemRealEstate, IItemServices } from "../../interfaces/mainInterfaces";
 
 function FormChangeItem<T extends IItem>({ currentItem, onSubmit }: IItemFormProps<T>) {
     const [category, setCategory] = useState(currentItem.type);
@@ -95,7 +91,7 @@ function FormChangeItem<T extends IItem>({ currentItem, onSubmit }: IItemFormPro
 
     const isDisabled = useMemo(() => (
         !name.inputValid || !description.inputValid || !location.inputValid ||
-        Object.values(extraFields).some((field) => !field.inputValid)
+        Object.values(extraFields).some((field) => !field.inputValid && category === "Недвижимость")
     ), [name.inputValid, description.inputValid, location.inputValid, extraFields]);
 
     function handleChangeSelect(value: string) {
@@ -130,7 +126,7 @@ function FormChangeItem<T extends IItem>({ currentItem, onSubmit }: IItemFormPro
                 brand: subcategory,
                 model: extraFields.model?.value,
                 year: Number(extraFields.year?.value),
-                mileage: extraFields.mileage?.value ? Number(extraFields.mileage.value) : undefined,
+                mileage: extraFields.mileage?.value ? Number(extraFields.mileage.value) : "",
             } as T;
         } else {
             data = {
@@ -142,7 +138,7 @@ function FormChangeItem<T extends IItem>({ currentItem, onSubmit }: IItemFormPro
                 serviceType: subcategory,
                 experience: Number(extraFields.experience?.value),
                 cost: Number(extraFields.cost?.value),
-                workSchedule: extraFields.workSchedule?.value || undefined,
+                workSchedule: extraFields.workSchedule?.value || "",
             } as T;
         }
 
@@ -155,7 +151,7 @@ function FormChangeItem<T extends IItem>({ currentItem, onSubmit }: IItemFormPro
               onChangeSelect={handleChangeSelect} setSubcategory={setSubcategory}
               isDisabledSelect={true} titleForm="Редактировать объявление"
               subcategory={subcategory} category={category} title={name} description={description}
-              validations={[Object.values(extraFields)[0], Object.values(extraFields)[1],Object.values(extraFields)[2]]}
+              validations={[Object.values(extraFields)[0], Object.values(extraFields)[1], Object.values(extraFields)[2]]}
         />
     );
 }

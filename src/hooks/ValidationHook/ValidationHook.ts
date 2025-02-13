@@ -22,7 +22,7 @@ const useValidation = (value: string, validations: IValidations) => {
                     value ? setIsEmpty(false) : setIsEmpty(true);
                     break;
                 case 'isString':
-                    const regularExpName = /^[a-zA-Z0-9\.\-\/\)\(\а-яёА-ЯЁ\s]*$/
+                    const regularExpName = /^[a-zA-Z0-9\.\-\/\)\(\а-яёА-ЯЁ\,\:\s]*$/
                     regularExpName.test(String(value.toLowerCase())) ? setStringError(false) : setStringError(true)
                     break;
                 case 'isUrl':

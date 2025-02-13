@@ -1,15 +1,15 @@
 import React from 'react';
 import Header from '../../components/Header/Header';
 import Footer from "../../components/Footer/Footer";
-import {IPropsFormPage} from "../../interfaces/interfacesForProps";
 import FormAdd from "../../components/Form/FormAdd";
-import {IItemAuto, IItemRealEstate, IItemServices} from "../../interfaces/mainInterfaces";
 import FormChange from "../../components/Form/FormChange";
+import {IPropsFormPage} from "../../interfaces/interfacesForProps";
+import {IItemAuto, IItemRealEstate, IItemServices} from "../../interfaces/mainInterfaces";
 
 function FormPage(props: IPropsFormPage) {
     return (
         <>
-            <Header/>
+            <Header to="/list" linkTitle="К списку объявлений" />
             {props.currentItem ?
                 props.currentItem.type === "Авто" ?
                     <FormChange onSubmit={props.changeItem}
