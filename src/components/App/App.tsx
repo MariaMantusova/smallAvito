@@ -80,6 +80,7 @@ function App() {
             <Route path="/form" element={<FormPage currentItem={currentItem} addNewItem={addNewItem}
                                                    changeItem={changeItem} />} />
             <Route path="/list" element={<ListPage setCurrentCategory={setCurrentCategory}
+                                                   searchTerm={searchTerm} currentCategory={currentCategory}
                                                    items={currentItems} setCurrentItem={setCurrentItem}
                                                    setSearchTerm={setSearchTerm} />} />
             <Route path="/item/:id" element={<ItemPage currentItem={currentItem}

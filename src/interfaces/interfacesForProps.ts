@@ -31,6 +31,8 @@ export interface IPropsItemPage {
 export interface IPropsListPage {
     items: (IItemRealEstate | IItemAuto | IItemServices)[]
     setCurrentCategory: React.Dispatch<React.SetStateAction<string>>;
+    currentCategory: string;
+    searchTerm: string;
     setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
     setCurrentItem?: React.Dispatch<React.SetStateAction<IItemRealEstate | IItemServices | IItemAuto | undefined>>
 }
@@ -38,6 +40,8 @@ export interface IPropsListPage {
 export interface IPropsSearchSection {
     setCurrentCategory: React.Dispatch<React.SetStateAction<string>>;
     setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+    currentCategory: string;
+    searchTerm: string;
 }
 
 export interface IPropsList {

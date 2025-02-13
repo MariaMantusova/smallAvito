@@ -9,7 +9,7 @@ function FormAdd(props: IPropsFormAdd) {
     const [subcategory, setSubcategory] = useState("");
     const navigate = useNavigate();
 
-    const description = useInput("", {isEmpty: true, isString: true, minLength: 30, maxLength: 500});
+    const description = useInput("", {isEmpty: true, isString: true, minLength: 19, maxLength: 500});
     const title = useInput("", {isEmpty: true, isString: true, minLength: 3, maxLength: 50});
     const location = useInput("", {isEmpty: true, isString: true, minLength: 3, maxLength: 50});
     const photo = useInput("", { isEmpty: true, isUrl: true, minLength: 5, maxLength: 1000 });

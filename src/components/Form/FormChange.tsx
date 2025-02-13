@@ -11,7 +11,7 @@ function FormChangeItem<T extends IItem>({ currentItem, onSubmit }: IItemFormPro
     const navigate = useNavigate();
 
     const name = useInput(currentItem.name, { isEmpty: false, minLength: 3, maxLength: 50 });
-    const description = useInput(currentItem.description, { isEmpty: false, minLength: 30, maxLength: 500 });
+    const description = useInput(currentItem.description, { isEmpty: false, minLength: 10, maxLength: 500 });
     const location = useInput(currentItem.location, { isEmpty: false, minLength: 3, maxLength: 50 });
     const photo = useInput(currentItem.photo || "", { isEmpty: true, isUrl: true, minLength: 5, maxLength: 1000 });
 

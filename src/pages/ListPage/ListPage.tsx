@@ -9,8 +9,8 @@ function ListPage(props: IPropsListPage) {
     return (
         <>
             <Header setCurrentItem={props.setCurrentItem} to="/form" linkTitle="Разместить объявление"/>
-            <SearchSection setSearchTerm={props.setSearchTerm}
-                           setCurrentCategory={props.setCurrentCategory} />
+            <SearchSection setSearchTerm={props.setSearchTerm} currentCategory={props.currentCategory}
+                           searchTerm={props.searchTerm} setCurrentCategory={props.setCurrentCategory} />
             <ListComponent items={props.items} />
             <Footer/>
         </>
