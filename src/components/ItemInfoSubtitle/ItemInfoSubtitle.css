@@ -1,0 +1,12 @@
+.item__info__subtitle {
+    font-size: 20px;
+    font-weight: lighter;
+    word-wrap: break-word;
+}
+
+@media (max-width: 695px) {
+    .item__info__subtitle {
+        font-size: 15px;
+        text-align: center;
+    }
+}

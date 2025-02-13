@@ -1,0 +1,13 @@
+.search {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    margin: 30px auto 60px;
+}
+
+@media (max-width: 695px) {
+    .search {
+        flex-direction: column;
+       align-items: center;
+    }
+}
