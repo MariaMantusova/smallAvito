@@ -51,4 +51,10 @@
     color: #fff;
     border-radius: 30px;
     font-weight: lighter;
+    transition: 0.3s ease-in-out opacity;
+}
+
+.item__info__link:hover {
+    opacity: 0.7;
+    cursor: pointer;
 }
