@@ -9,6 +9,9 @@ export const searchOptions: ISearchOption[] = [{
 }, {
     value: "Услуги",
     label: "Услуги",
+}, {
+    value: "Все",
+    label: "Все",
 }]
 
 export const searchOptionsRealEstate: ISearchOption[] = [

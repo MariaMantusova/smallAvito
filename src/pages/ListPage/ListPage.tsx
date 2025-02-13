@@ -1,15 +1,17 @@
 import React from 'react';
-import List from "../../components/List/List";
+import ListComponent from "../../components/ListComponent/ListComponent";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import SearchSection from "../../components/Search/Search";
+import {IPropsListPage} from "../../interfaces/interfacesForProps";
 
-function ListPage() {
+function ListPage(props: IPropsListPage) {
     return (
         <>
             <Header/>
-            <SearchSection />
-            <List/>
+            <SearchSection setSearchTerm={props.setSearchTerm}
+                           setCurrentCategory={props.setCurrentCategory} />
+            <ListComponent items={props.items} />
             <Footer/>
         </>
     )
