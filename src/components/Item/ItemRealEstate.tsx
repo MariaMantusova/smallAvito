@@ -1,8 +1,8 @@
 import React from "react";
 import ItemMainInfo from "./ItemMainInfo/ItemMainInfo";
 import realEstateImage from "../../images/real-estate.webp";
-import {IPropsItemRealEstate} from "../../interfaces/interfacesForProps";
 import {realEstateNames} from "../../data/categoriesData";
+import {IPropsItemRealEstate} from "../../interfaces/interfacesForProps";
 
 function ItemRealEstate(props: IPropsItemRealEstate) {
     return (

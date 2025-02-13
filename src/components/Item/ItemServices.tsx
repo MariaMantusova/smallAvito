@@ -1,8 +1,8 @@
 import React from "react";
-import {IPropsItemServices} from "../../interfaces/interfacesForProps";
 import ItemMainInfo from "./ItemMainInfo/ItemMainInfo";
 import serviceImage from "../../images/service.webp";
 import {servicesNames} from "../../data/categoriesData";
+import {IPropsItemServices} from "../../interfaces/interfacesForProps";
 
 function ItemServices(props: IPropsItemServices) {
     return (<ItemMainInfo item={props.item} image={serviceImage}

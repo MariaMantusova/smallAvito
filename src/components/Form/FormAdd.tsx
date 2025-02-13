@@ -1,8 +1,8 @@
 import React, {useState} from "react";
-import {IPropsFormAdd} from "../../interfaces/interfacesForProps";
-import {useInput} from "../../hooks/ValidationHook/ValidationHook";
-import Form from "./Form";
 import {useNavigate} from "react-router-dom";
+import {useInput} from "../../hooks/ValidationHook/ValidationHook";
+import Form from "./Form/Form";
+import {IPropsFormAdd} from "../../interfaces/interfacesForProps";
 
 function FormAdd(props: IPropsFormAdd) {
     const [category, setCategory] = useState("");

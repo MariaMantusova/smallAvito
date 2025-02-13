@@ -4,16 +4,16 @@ import {Select} from "antd";
 import {
     searchOptions, searchOptionsAuto,
     searchOptionsRealEstate, searchOptionsServices
-} from "../../data/searchOptions";
-import CategoryForm from "../CategoryForm/CategoryForm";
+} from "../../../data/searchOptions";
+import CategoryForm from "../../CategoryForm/CategoryForm";
 import {
     autoNames, autoRequirements,
     autoTypes, realEstateNames, realEstateRequirements,
     realEstateTypes, servicesNames, servicesRequirements, servicesTypes
-} from "../../data/categoriesData";
-import {IPropsForm} from "../../interfaces/interfacesForProps";
-import FormInput from "./FormInput/FormInput";
-import {ISearchOption} from "../../interfaces/mainInterfaces";
+} from "../../../data/categoriesData";
+import {IPropsForm} from "../../../interfaces/interfacesForProps";
+import FormInput from "../FormInput/FormInput";
+import {ISearchOption} from "../../../interfaces/mainInterfaces";
 
 function Form(props: IPropsForm) {
     const categoryData: Record<string, {

@@ -4,8 +4,8 @@ import ItemPage from "../../pages/ItemPage/ItemPage";
 import ListPage from "../../pages/ListPage/ListPage";
 import FormPage from "../../pages/FormPage/FormPage";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
-import {IItemAuto, IItemRealEstate, IItemServices} from "../../interfaces/mainInterfaces";
 import {itemsApi} from "../../utils/ItemsApi";
+import {IItemAuto, IItemRealEstate, IItemServices} from "../../interfaces/mainInterfaces";
 
 function App() {
     const [items, setItems] = useState<(IItemAuto | IItemRealEstate | IItemServices)[]>([]);

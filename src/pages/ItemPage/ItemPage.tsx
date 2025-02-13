@@ -2,11 +2,11 @@ import React, {useEffect} from 'react';
 import { useParams } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import {IPropsItemPage} from "../../interfaces/interfacesForProps";
 import ItemRealEstate from "../../components/Item/ItemRealEstate";
-import {IItemAuto, IItemRealEstate, IItemServices} from "../../interfaces/mainInterfaces";
 import ItemServices from "../../components/Item/ItemServices";
 import ItemCar from "../../components/Item/ItemCar";
+import {IItemAuto, IItemRealEstate, IItemServices} from "../../interfaces/mainInterfaces";
+import {IPropsItemPage} from "../../interfaces/interfacesForProps";
 
 function ItemPage(props: IPropsItemPage) {
     const { id } = useParams();
