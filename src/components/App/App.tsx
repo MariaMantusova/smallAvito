@@ -6,8 +6,11 @@ import FormPage from "../../pages/FormPage/FormPage";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 import {itemsApi} from "../../utils/ItemsApi";
 import {IItemAuto, IItemRealEstate, IItemServices} from "../../interfaces/mainInterfaces";
+import {useNavigate} from "react-router-dom";
 
 function App() {
+    const navigate = useNavigate();
+
     const [items, setItems] = useState<(IItemAuto | IItemRealEstate | IItemServices)[]>([]);
     const [currentCategory, setCurrentCategory] = useState<string>("");
     const [searchTerm, setSearchTerm] = useState<string>("");
@@ -51,8 +54,11 @@ function App() {
         if (!newItem) return undefined;
 
         itemsApi.addItem(newItem)
-            .then((item) => setItems([...items, item]))
-            .catch((err) => prompt("Произошла ошибка"));
+            .then((item) => {
+                setItems([...items, item]);
+                navigate(`/item/${item.id}`);
+            })
+            .catch((err) => prompt("Произошла ошибка"))
     }
 
     function changeItem(id: number | undefined, item: IItemAuto | IItemRealEstate | IItemServices) {

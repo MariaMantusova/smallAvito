@@ -19,8 +19,9 @@ function FormAdd(props: IPropsFormAdd) {
 
     const isDisabled: boolean = !category || !subcategory || !description.inputValid
     || !title.inputValid || !location.inputValid || (!photo.isEmpty && !photo.inputValid)
-    || !categoryInput1.inputValid || !categoryInput2.inputValid || (category === "Недвижимость" ?
-        !categoryInput3.inputValid : categoryInput3.inputValid)
+    || !categoryInput1.inputValid || !categoryInput2.inputValid || (category === "Недвижимость" &&
+        !categoryInput3.inputValid) || (category === "Авто" &&
+            !categoryInput3.inputValid)
 
     function onChangeSelect(value: string) {
         setCategory(value);
@@ -37,6 +38,7 @@ function FormAdd(props: IPropsFormAdd) {
                 name: title.value,
                 description: description.value,
                 location: location.value,
+                photo: photo.value,
                 type: category,
                 propertyType: subcategory,
                 price: +categoryInput3.value,
@@ -50,6 +52,7 @@ function FormAdd(props: IPropsFormAdd) {
                 name: title.value,
                 description: description.value,
                 location: location.value,
+                photo: photo.value,
                 type: category,
                 serviceType: subcategory,
                 experience: +categoryInput1.value,
@@ -63,15 +66,14 @@ function FormAdd(props: IPropsFormAdd) {
                 name: title.value,
                 description: description.value,
                 location: location.value,
+                photo: photo.value,
                 type: category,
                 brand: subcategory,
                 model: categoryInput1.value,
                 year: +categoryInput2.value,
-                mileage: +categoryInput3.value,
+                mileage: +categoryInput3.value
             })
         }
-
-        navigate("/list");
     }
 
     return(<Form onSubmit={onSubmit} description={description} photo={photo} location={location}
