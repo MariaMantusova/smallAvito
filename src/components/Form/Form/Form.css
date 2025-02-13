@@ -68,3 +68,28 @@
     cursor: not-allowed;
     opacity: 1;
 }
+
+@media (max-width: 540px) {
+    .form-section {
+        width: 90vw;
+        max-width: 100%;
+    }
+
+    .form-section__title {
+        font-size: 20px;
+    }
+
+    .form__input {
+        font-size: 10px;
+        padding: 10px 5px;
+    }
+
+    .form__error {
+        font-size: 7px;
+    }
+
+    .form__button {
+        padding: 10px 30px;
+        font-size: 10px;
+    }
+}

@@ -34,3 +34,19 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance: textfield;
 }
+
+@media (max-width: 540px) {
+    .category-form {
+        width: 90vw;
+        max-width: 100%;
+    }
+
+    .category-form__input {
+        font-size: 10px;
+        padding: 10px 5px;
+    }
+
+    .input__error {
+        font-size: 7px;
+    }
+}
