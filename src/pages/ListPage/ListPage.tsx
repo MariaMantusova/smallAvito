@@ -9,7 +9,7 @@ function ListPage(props: IPropsListPage) {
     return (
         <>
             <Header/>
-            <SearchSection />
+            <SearchSection setCurrentCategory={props.setCurrentCategory} />
             <ListComponent items={props.items} />
             <Footer/>
         </>

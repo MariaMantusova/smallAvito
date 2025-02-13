@@ -36,6 +36,11 @@ export interface IPropsItemPage {
 
 export interface IPropsListPage {
     items: (IItemRealEstate | IItemAuto | IItemServices)[]
+    setCurrentCategory: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export interface IPropsSearchSection {
+    setCurrentCategory: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export interface IPropsList {

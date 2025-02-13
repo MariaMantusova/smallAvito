@@ -9,7 +9,16 @@ import {itemsApi} from "../../utils/ItemsApi";
 
 function App() {
     const [items, setItems] = useState<(IItemAuto | IItemRealEstate | IItemServices)[]>([]);
+    const [currentCategory, setCurrentCategory] = useState<string>("");
+    const [currentItems, setCurrentItems] = useState<(IItemAuto | IItemRealEstate | IItemServices)[]>(items);
     const [currentItem, setCurrentItem] = useState<IItemAuto | IItemRealEstate | IItemServices>();
+
+    useEffect(() => {
+        if (currentCategory === "Недвижимость") setCurrentItems(items.filter((item) => item.type === "Недвижимость"));
+        else if (currentCategory === "Услуги") setCurrentItems(items.filter((item) => item.type === "Услуги"));
+        else if (currentCategory === "Авто") setCurrentItems(items.filter((item) => item.type === "Авто"));
+        else setCurrentItems(items);
+    }, [items, currentCategory]);
 
     useEffect(() => {
         getItems();
@@ -47,8 +56,10 @@ function App() {
 
     return (
         <Routes>
-            <Route path="/form" element={<FormPage currentItem={currentItem} addNewItem={addNewItem} changeItem={changeItem} />}></Route>
-            <Route path="/list" element={<ListPage items={items} />}></Route>
+            <Route path="/form" element={<FormPage currentItem={currentItem} addNewItem={addNewItem}
+                                                   changeItem={changeItem} />}></Route>
+            <Route path="/list" element={<ListPage setCurrentCategory={setCurrentCategory}
+                                                   items={currentItems} />}></Route>
             <Route path="/item/:id" element={<ItemPage currentItem={currentItem} setCurrentItem={setCurrentItem}
                                                        getItem={getItemByID} />}></Route>
             <Route path="*" element={<NotFoundPage />}></Route>
