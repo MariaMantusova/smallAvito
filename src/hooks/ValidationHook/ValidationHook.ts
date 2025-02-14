@@ -5,7 +5,6 @@ const useValidation = (value: string, validations: IValidations) => {
     const [isEmpty, setIsEmpty] = React.useState(true);
     const [minLengthError, setMinLengthError] = React.useState(false);
     const [maxLengthError, setMaxLengthError] = React.useState(false);
-    const [stringError, setStringError] = React.useState(false);
     const [urlError, setUrlError] = React.useState(false);
     const [inputValid, setInputValid] = React.useState(false);
 
@@ -27,22 +26,21 @@ const useValidation = (value: string, validations: IValidations) => {
                     break;
             }
         }
-    }, [value])
+    }, [validations, value])
 
     useEffect(() => {
-        if (isEmpty || minLengthError || stringError || urlError || maxLengthError) {
+        if (isEmpty || minLengthError || urlError || maxLengthError) {
             setInputValid(false)
         } else {
             setInputValid(true)
         }
-    }, [isEmpty, minLengthError, stringError, urlError, maxLengthError])
+    }, [isEmpty, minLengthError, urlError, maxLengthError])
 
     return {
         isEmpty,
         minLengthError,
         maxLengthError,
         inputValid,
-        stringError,
         urlError
     }
 }

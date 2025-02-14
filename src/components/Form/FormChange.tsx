@@ -92,7 +92,7 @@ function FormChangeItem<T extends IItem>({ currentItem, onSubmit }: IItemFormPro
     const isDisabled = useMemo(() => (
         !name.inputValid || !description.inputValid || !location.inputValid ||
         Object.values(extraFields).some((field) => !field.inputValid && category === "Недвижимость")
-    ), [name.inputValid, description.inputValid, location.inputValid, extraFields]);
+    ), [name.inputValid, description.inputValid, location.inputValid, extraFields, category]);
 
     function handleChangeSelect(value: string) {
         setCategory(value);

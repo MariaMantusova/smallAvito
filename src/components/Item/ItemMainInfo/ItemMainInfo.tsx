@@ -22,7 +22,7 @@ function ItemMainInfo(props: IPropsItemMainInfo) {
                    <ItemInfoSubtitle title={props.subCategories[3]} value={props.values[0]} />
                    <ItemInfoSubtitle title={props.subCategories[0]} value={props.values[1]} />
                    <ItemInfoSubtitle title={props.subCategories[1]} value={props.values[2]} />
-                   <ItemInfoSubtitle title={props.subCategories[2]} value={props.values[3] || "Нет информации"} />
+                   <ItemInfoSubtitle title={props.subCategories[2]} value={!props.values[3] && props.values[3] !== 0 ? "Нет информации" : props.values[3] } />
                 </div>
             </div>
             <div className="item__add-info">

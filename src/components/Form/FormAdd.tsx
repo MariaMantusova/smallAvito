@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import {useNavigate} from "react-router-dom";
 import {useInput} from "../../hooks/ValidationHook/ValidationHook";
 import Form from "./Form/Form";
 import {IPropsFormAdd} from "../../interfaces/interfacesForProps";
@@ -7,7 +6,6 @@ import {IPropsFormAdd} from "../../interfaces/interfacesForProps";
 function FormAdd(props: IPropsFormAdd) {
     const [category, setCategory] = useState("");
     const [subcategory, setSubcategory] = useState("");
-    const navigate = useNavigate();
 
     const description = useInput("", {isEmpty: true, isString: true, minLength: 19, maxLength: 500});
     const title = useInput("", {isEmpty: true, isString: true, minLength: 3, maxLength: 50});
